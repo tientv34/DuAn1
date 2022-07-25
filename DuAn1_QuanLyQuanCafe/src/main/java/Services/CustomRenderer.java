@@ -23,7 +23,7 @@ public class CustomRenderer extends DefaultListCellRenderer implements ListCellR
     public Component getListCellRendererComponent(JList<?> list, Object valueObject, int index, boolean isSelected, boolean hasFocus) {
         ModelNhomSanPham nhomHang = (ModelNhomSanPham) valueObject;
         setText(nhomHang.getTenNhomSanPham());
-        ImageIcon icon = new ImageIcon("src\\main\\java\\image\\" + nhomHang.getImageID().getDuongDanAnh());
+        ImageIcon icon = new ImageIcon("src\\main\\resources\\ImageLogin\\" + nhomHang.getImageID().getDuongDanAnh());
         Image image = icon.getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
         ImageIcon icon1 = new ImageIcon(image);
         setIcon(icon1);

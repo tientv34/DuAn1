@@ -101,7 +101,7 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < _KhuVucService.getListFromDB().size(); i++) {
                 panelTab[i] = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
                 panelTab[i].setBackground(Color.WHITE);
-                ImageIcon icon = new ImageIcon("src\\main\\java\\image\\" + _KhuVucService.getListFromDB().get(i).getImageID().getDuongDanAnh());
+                ImageIcon icon = new ImageIcon("src\\main\\resources\\ImageLogin\\" + _KhuVucService.getListFromDB().get(i).getImageID().getDuongDanAnh());
                 Image image = icon.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon icon1 = new ImageIcon(image);
                 if (_KhuVucService.getListFromDB().get(i).getTab() == 1) {
@@ -120,7 +120,7 @@ public class Main extends javax.swing.JFrame {
                         labelTenBan[j].setAlignmentX(CENTER_ALIGNMENT);
                         labelAnhBan[j] = new JLabel();
                         labelAnhBan[j].setAlignmentX(CENTER_ALIGNMENT);
-                        labelAnhBan[j].setIcon(new ImageIcon("src\\main\\java\\image\\" + _KhuVucService.getListFromDB().get(i).getImageID().getDuongDanAnh()));
+                        labelAnhBan[j].setIcon(new ImageIcon("src\\main\\resources\\ImageLogin\\" + _KhuVucService.getListFromDB().get(i).getImageID().getDuongDanAnh()));
                         panelBan[j].add(labelAnhBan[j]);
                         panelBan[j].add(labelTenBan[j]);
                         panelBan[j].add(Box.createRigidArea(new Dimension(0, 10)));
@@ -149,7 +149,7 @@ public class Main extends javax.swing.JFrame {
 
     void setLogo() {
         try {
-            Image icon = Toolkit.getDefaultToolkit().getImage("src\\main\\java\\icon\\logo.png");
+            Image icon = Toolkit.getDefaultToolkit().getImage("src\\main\\resources\\Image\\logo.png");
             this.setIconImage(icon);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi logo");
@@ -426,22 +426,26 @@ public class Main extends javax.swing.JFrame {
 
         jToolBar2.setRollover(true);
 
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         jButton13.setFocusable(false);
         jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton13);
 
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tru.png"))); // NOI18N
         jButton14.setFocusable(false);
         jButton14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton14);
 
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/calculator.png"))); // NOI18N
         jButton15.setText("Đặt số lượng");
         jButton15.setFocusable(false);
         jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton15);
 
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ghichu.png"))); // NOI18N
         jButton17.setText("Ghi chú");
         jButton17.setFocusable(false);
         jButton17.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -582,6 +586,8 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane2.addTab("Số tiền", jPanel4);
         jTabbedPane2.addTab("Ghi chú", jTextField3);
 
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/quanlybanhang.png"))); // NOI18N
+
         javax.swing.GroupLayout panel_hoadonLayout = new javax.swing.GroupLayout(panel_hoadon);
         panel_hoadon.setLayout(panel_hoadonLayout);
         panel_hoadonLayout.setHorizontalGroup(
@@ -648,7 +654,7 @@ public class Main extends javax.swing.JFrame {
         panel_button.setBackground(new java.awt.Color(187, 206, 230));
 
         btn_chuyenban.setBackground(new java.awt.Color(225, 225, 225));
-        btn_chuyenban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
+        btn_chuyenban.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
         btn_chuyenban.setText("Chuyển bàn");
         btn_chuyenban.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_chuyenban.setHideActionText(true);
@@ -773,6 +779,7 @@ public class Main extends javax.swing.JFrame {
 
         jToolBar3.setRollover(true);
 
+        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         jButton23.setFocusable(false);
         jButton23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton23.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -783,12 +790,14 @@ public class Main extends javax.swing.JFrame {
         });
         jToolBar3.add(jButton23);
 
+        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/office-material.png"))); // NOI18N
         jButton24.setFocusable(false);
         jButton24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton24.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar3.add(jButton24);
         jToolBar3.add(jSeparator1);
 
+        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
         jButton28.setFocusable(false);
         jButton28.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton28.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -824,6 +833,7 @@ public class Main extends javax.swing.JFrame {
 
         jToolBar5.setRollover(true);
 
+        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         jButton25.setText("Thêm mới(Insert)  ");
         jButton25.setFocusable(false);
         jButton25.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -835,12 +845,14 @@ public class Main extends javax.swing.JFrame {
         });
         jToolBar5.add(jButton25);
 
+        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
         jButton26.setText("Chỉnh sửa(F4)   ");
         jButton26.setFocusable(false);
         jButton26.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton26.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar5.add(jButton26);
 
+        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
         jButton27.setText("Xóa(Del)");
         jButton27.setFocusable(false);
         jButton27.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -848,6 +860,7 @@ public class Main extends javax.swing.JFrame {
         jToolBar5.add(jButton27);
         jToolBar5.add(jSeparator3);
 
+        jButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
         jButton29.setFocusable(false);
         jButton29.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton29.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1555,6 +1568,7 @@ public class Main extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/sudungdichvu.png"))); // NOI18N
         jButton1.setText("Sử dụng dịch vụ");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1562,6 +1576,7 @@ public class Main extends javax.swing.JFrame {
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton1);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/quanlybanhang.png"))); // NOI18N
         jButton2.setText("Quản lý bán hàng");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1569,6 +1584,7 @@ public class Main extends javax.swing.JFrame {
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton2);
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/doanhthu.png"))); // NOI18N
         jButton3.setText("Doanh thu");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1576,6 +1592,7 @@ public class Main extends javax.swing.JFrame {
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton3);
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/thongke.png"))); // NOI18N
         jButton4.setText("Thống kê mặt hàng");
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1583,6 +1600,7 @@ public class Main extends javax.swing.JFrame {
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton4);
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tonkho.png"))); // NOI18N
         jButton5.setText("Tồn kho");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1590,6 +1608,7 @@ public class Main extends javax.swing.JFrame {
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton5);
 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ghichu.png"))); // NOI18N
         jButton6.setText("Ghi chú nhanh");
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1597,6 +1616,7 @@ public class Main extends javax.swing.JFrame {
         jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton6);
 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/baocao.png"))); // NOI18N
         jButton7.setText("Báo cáo");
         jButton7.setFocusable(false);
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1604,6 +1624,7 @@ public class Main extends javax.swing.JFrame {
         jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton7);
 
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/thoat.png"))); // NOI18N
         jButton8.setText("Thoát");
         jButton8.setFocusable(false);
         jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -1679,12 +1700,60 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+//        DoiMatKhau dmk = new DoiMatKhau();
+//        dmk.setVisible(true);
+//        dmk.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+//        Nhanvien nv = new Nhanvien();
+//        nv.setVisible(true);
+//        nv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        //        ChiTietKhachHang ctkh = new ChiTietKhachHang();
+        //        ctkh.setVisible(true);
+    }//GEN-LAST:event_jButton40ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        //        ChiTietThanhVien cttv = new ChiTietThanhVien();
+        //        cttv.setVisible(true);
+    }//GEN-LAST:event_jButton37ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        //        ChiTietNhomMatHang ctnh = new ChiTietNhomMatHang();
+        //        ctnh.setVisible(true);
+    }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        //        ChiTietMatHang ctmh = new ChiTietMatHang();
+        //        ctmh.setVisible(true);
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        //        ThemBan tb = new ThemBan();
+        //        tb.setVisible(true);
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        //        ThemKhuVuc tkv = new ThemKhuVuc();
+        //        tkv.setVisible(true);
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        //        Thanhtoan tt = new Thanhtoan();
+        //        tt.setVisible(true);
+        //        tt.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
     private void list_douongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_douongMouseClicked
         int index = list_douong.getSelectedIndex();
-//        if (index == 0) {
-//            loadTableSanPham(_SanPhamService.selectAll(0, 100));
-//            return;
-//        }
+        //        if (index == 0) {
+            //            loadTableSanPham(_SanPhamService.selectAll(0, 100));
+            //            return;
+            //        }
         Long maNH = _NhomSanPhamService.getListFromDB().get(index).getId();
         List<ModelSanPham> list = this._SanPhamService.findList(String.valueOf(maNH));
         _DefaultTableModel = (DefaultTableModel) tbl_mathang.getModel();
@@ -1698,54 +1767,6 @@ public class Main extends javax.swing.JFrame {
             });
         }
     }//GEN-LAST:event_list_douongMouseClicked
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-//        Thanhtoan tt = new Thanhtoan();
-//        tt.setVisible(true);
-//        tt.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-//        DoiMatKhau dmk = new DoiMatKhau();
-//        dmk.setVisible(true);
-//        dmk.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-//        Nhanvien nv = new Nhanvien();
-//        nv.setVisible(true);
-//        nv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-//        ThemKhuVuc tkv = new ThemKhuVuc();
-//        tkv.setVisible(true);
-    }//GEN-LAST:event_jButton23ActionPerformed
-
-    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-//        ThemBan tb = new ThemBan();
-//        tb.setVisible(true);
-    }//GEN-LAST:event_jButton25ActionPerformed
-
-    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
-//        ChiTietNhomMatHang ctnh = new ChiTietNhomMatHang();
-//        ctnh.setVisible(true);
-    }//GEN-LAST:event_jButton34ActionPerformed
-
-    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-//        ChiTietMatHang ctmh = new ChiTietMatHang();
-//        ctmh.setVisible(true);
-    }//GEN-LAST:event_jButton30ActionPerformed
-
-    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-//        ChiTietThanhVien cttv = new ChiTietThanhVien();
-//        cttv.setVisible(true);
-    }//GEN-LAST:event_jButton37ActionPerformed
-
-    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
-//        ChiTietKhachHang ctkh = new ChiTietKhachHang();
-//        ctkh.setVisible(true);
-    }//GEN-LAST:event_jButton40ActionPerformed
 
     /**
      * @param args the command line arguments
