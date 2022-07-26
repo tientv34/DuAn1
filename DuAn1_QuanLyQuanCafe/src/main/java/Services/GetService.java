@@ -4,12 +4,16 @@
  */
 package Services;
 
+import Entity.Ban;
 import Entity.DonViTinh;
 import Entity.Image;
+import Entity.KhachHang;
 import Entity.KhuVuc;
 import Entity.NhomSanPham;
+import ViewModels.ModelBan;
 import ViewModels.ModelDonViTinh;
 import ViewModels.ModelImage;
+import ViewModels.ModelKhachHang;
 import ViewModels.ModelKhuVuc;
 import ViewModels.ModelNhomSanPham;
 
@@ -48,4 +52,21 @@ public class GetService {
     public static ModelNhomSanPham getModelNhomSanPham(NhomSanPham x) {
         return new ModelNhomSanPham(x.getId(), x.getMaNhomSanPham(), x.getTenNhomSanPham(), getModelImage(x.getImageID()),x.getTrangthai());
     }
+    
+    public static Ban getBan(ModelBan x) {
+        return new Ban(x.getId(), x.getMaBan(), x.getTenBan(), getKhuVuc(x.getKhuVucID()), x.getTrangThai());
+    }
+    
+    public static ModelBan getModelBan(Ban x) {
+        return new ModelBan(x.getId(), x.getMaBan(), x.getTenBan(), getModelKhuVuc(x.getKhuVuc()), x.getTrangThai());
+    }
+    
+     public static KhachHang getKhachHang(ModelKhachHang x) {
+        return new KhachHang(x.getId(), x.getMaKhachHang(), x.getTenKhachHang(), x.getDiaChi(), x.getDienThoai(), x.getEmail(), x.getFax(), x.getTrangThai(), x.getGhiChu());
+    }
+    
+    public static ModelKhachHang getModelKhachHang(KhachHang x) {
+        return new ModelKhachHang(x.getId(), x.getMaKhachHang(), x.getTenKhachHang(), x.getDiaChi(), x.getDienThoai(), x.getEmail(), x.getFax(), x.getTrangThai(), x.getGhiChu());
+    }
+    
 }

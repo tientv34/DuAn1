@@ -8,6 +8,8 @@ package Utilities;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -53,4 +55,10 @@ public class XDate {
         }
     }
 
+    public static String getGio() {
+        LocalDateTime current = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formatted = current.format(formatter);
+        return formatted;
+    }
 }
