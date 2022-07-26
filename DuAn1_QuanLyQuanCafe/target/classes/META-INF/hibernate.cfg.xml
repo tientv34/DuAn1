@@ -40,6 +40,9 @@
         <mapping class="Entity.SanPham" />
         <mapping class="Entity.NhomSanPham" />
         <mapping class="Entity.Image" />
+        <mapping class="Entity.KhachHang" />
+        <mapping class="Entity.HoaDon" />
+        <mapping class="Entity.HoaDonChiTiet" />
        
     </session-factory>
 </hibernate-configuration>

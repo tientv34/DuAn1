@@ -17,14 +17,20 @@ import javax.swing.border.EmptyBorder;
  *
  * @author Admin
  */
-public class CustomRenderer extends DefaultListCellRenderer implements ListCellRenderer<Object> {
+public class NhomSanPhamJList extends DefaultListCellRenderer implements ListCellRenderer<Object> {
 
     @Override
     public Component getListCellRendererComponent(JList<?> list, Object valueObject, int index, boolean isSelected, boolean hasFocus) {
         ModelNhomSanPham nhomHang = (ModelNhomSanPham) valueObject;
         setText(nhomHang.getTenNhomSanPham());
-        ImageIcon icon = new ImageIcon("src\\main\\resources\\ImageLogin\\" + nhomHang.getImageID().getDuongDanAnh());
-        Image image = icon.getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+        String url = "";
+        if (nhomHang.getImageID() == null) {
+            url = "planet-earth.png";
+        }else{
+            url = nhomHang.getImageID().getDuongDanAnh();
+        }
+        ImageIcon icon = new ImageIcon("src\\main\\resources\\ImageLogin\\" + url);
+        Image image = icon.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
         ImageIcon icon1 = new ImageIcon(image);
         setIcon(icon1);
         setBorder(new EmptyBorder(5, 10, 5, 5));
