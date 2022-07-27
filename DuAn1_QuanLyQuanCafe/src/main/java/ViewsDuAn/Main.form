@@ -719,9 +719,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton10" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton11" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jButton18" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_them" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_giam" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btn_xoa" alignment="0" max="32767" attributes="0"/>
                       <Component id="jComboBox3" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButton19" alignment="0" max="32767" attributes="0"/>
                       <Component id="jButton20" alignment="0" max="32767" attributes="0"/>
@@ -741,11 +741,11 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jComboBox3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton10" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="btn_them" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton11" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="btn_giam" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton18" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="btn_xoa" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButton19" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -805,17 +805,20 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton10">
+                <Component class="javax.swing.JButton" name="btn_them">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&lt;&lt; Th&#xea;m"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_themActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton11">
+                <Component class="javax.swing.JButton" name="btn_giam">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m&gt;&gt;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton18">
+                <Component class="javax.swing.JButton" name="btn_xoa">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                   </Properties>
@@ -1578,7 +1581,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextField13" min="-2" pref="162" max="-2" attributes="0"/>
+                                      <Component id="txt_timkiem" min="-2" pref="162" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane9" alignment="0" min="-2" pref="975" max="-2" attributes="0"/>
                               </Group>
@@ -1593,7 +1596,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_timkiem" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane9" max="32767" attributes="0"/>
@@ -1623,7 +1626,7 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton40ActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton41">
+                        <Component class="javax.swing.JButton" name="btn_sua">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/Image/office-material.png"/>
@@ -1633,8 +1636,11 @@
                             <Property name="horizontalTextPosition" type="int" value="4"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_suaActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton42">
+                        <Component class="javax.swing.JButton" name="btn_XoaKH">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/Image/delete.png"/>
@@ -1644,10 +1650,13 @@
                             <Property name="horizontalTextPosition" type="int" value="4"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_XoaKHActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JToolBar$Separator" name="jSeparator7">
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton43">
+                        <Component class="javax.swing.JButton" name="btn_loadData">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/Image/exchange.png"/>
@@ -1656,6 +1665,9 @@
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_loadDataActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1664,7 +1676,10 @@
                         <Property name="text" type="java.lang.String" value="L&#x1ecd;c d&#x1eef; li&#x1ec7;u(F3):  "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField13">
+                    <Component class="javax.swing.JTextField" name="txt_timkiem">
+                      <Events>
+                        <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txt_timkiemCaretUpdate"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane9">
                       <AuxValues>
@@ -1673,15 +1688,16 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable3">
+                        <Component class="javax.swing.JTable" name="tbl_KhachHang">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="7" rowCount="4">
+                              <Table columnCount="8" rowCount="4">
                                 <Column editable="false" title="STT" type="java.lang.Object"/>
+                                <Column editable="true" title="M&#xe3; Kh&#xe1;ch H&#xe0;ng" type="java.lang.Object"/>
                                 <Column editable="false" title="T&#xea;n kh&#xe1;ch" type="java.lang.Object"/>
                                 <Column editable="false" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
-                                <Column editable="false" title="&#x110;i&#x1ec7;n tho&#x1ea1;i" type="java.lang.Object"/>
-                                <Column editable="false" title="Email" type="java.lang.Object"/>
+                                <Column editable="false" title="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i" type="java.lang.Object"/>
+                                <Column editable="true" title="Email" type="java.lang.Object"/>
                                 <Column editable="true" title="Fax" type="java.lang.Object"/>
                                 <Column editable="true" title="Ghi ch&#xfa;" type="java.lang.Object"/>
                               </Table>

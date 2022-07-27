@@ -65,7 +65,7 @@ public class SanPhamRepository implements IRepository<SanPham> {
     }
 
     @Override
-    public SanPham findById(String id) {
+    public SanPham findById(long id) {
         SanPham entity;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             try {
@@ -81,7 +81,7 @@ public class SanPhamRepository implements IRepository<SanPham> {
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
@@ -91,11 +91,11 @@ public class SanPhamRepository implements IRepository<SanPham> {
                 query.setParameter("id", id);
                 int result = query.executeUpdate();
                 if (result == 0) {
-                    id = null;
+                    id = 0;
                 }
                 trans.commit();
             } catch (Exception e) {
-                id = null;
+                id = -1;
             }
 
         }

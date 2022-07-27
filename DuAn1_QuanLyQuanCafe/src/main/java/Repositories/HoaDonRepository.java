@@ -58,7 +58,7 @@ public class HoaDonRepository implements IRepository<HoaDon> {
     }
 
     @Override
-    public HoaDon findById(String id) {
+    public HoaDon findById(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -68,7 +68,7 @@ public class HoaDonRepository implements IRepository<HoaDon> {
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

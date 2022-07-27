@@ -4,7 +4,7 @@
  */
 package Repositories;
 
-import Entity.KhuVuc;
+import Entity.KhachHang;
 import Utilities.HibernateUtil;
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -14,21 +14,21 @@ import org.hibernate.query.Query;
 
 /**
  *
- * @author Admin
+ * @author TranTien
  */
-public class KhuVucRepository implements IRepository<KhuVuc>{
+public class KhachHangRepository implements IRepository<KhachHang>{
 
     @Override
-    public List<KhuVuc> SelectAll(int position, int pageSize, String... args) {
-        List<KhuVuc> entity;
+    public List<KhachHang> SelectAll(int position, int pageSize, String... args) {
+        List<KhachHang> khachHangs;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            String hql = "FROM KhuVuc";
-            TypedQuery<KhuVuc> query = session.createQuery(hql, KhuVuc.class);
+            String hql = "FROM KhachHang";
+            TypedQuery<KhachHang> query = session.createQuery(hql, KhachHang.class);
             query.setFirstResult(position);
             query.setMaxResults(pageSize);
-            entity = query.getResultList();
-            return entity;
+            khachHangs = query.getResultList();
+            return khachHangs;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,19 +37,13 @@ public class KhuVucRepository implements IRepository<KhuVuc>{
 
     @Override
     public int Count(String... args) {
-          long total = 0;
-        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String statement = "SELECT COUNT(id) FROM KhuVuc";
-            TypedQuery<Long> query = session.createQuery(statement, Long.class);
-            total = query.getSingleResult();
-        }
-        return (int) total;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public KhuVuc insert(KhuVuc entity) {
-        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction trans = session.getTransaction();
+    public KhachHang insert(KhachHang entity) {
+         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+             Transaction trans = session.getTransaction();
             trans.begin();
             try {
                 session.saveOrUpdate(entity);
@@ -65,28 +59,45 @@ public class KhuVucRepository implements IRepository<KhuVuc>{
     }
 
     @Override
-    public KhuVuc findById(long id) {
-        KhuVuc entity;
+    public KhachHang findById(long id) {
+        KhachHang khachHang;
         try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
             try {
-                String hql = "FROM KhuVuc WHERE id = :id";
-                TypedQuery<KhuVuc> query = session.createQuery(hql, KhuVuc.class);
+                String hql = "FROM SanPham WHERE id = :id";
+                TypedQuery<KhachHang> query = session.createQuery(hql, KhachHang.class);
                 query.setParameter("id", id);
-                entity = query.getSingleResult();
+                khachHang = query.getSingleResult();
             } catch (Exception e) {
-                entity = null;
+                khachHang = null;
             }
         }
-        return entity;
+        return khachHang;
+    }
+
+    @Override
+    public List<KhachHang> findList(String text) {
+        List<KhachHang> listKhachHang;
+        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+            try {
+                String hql = "SELECT p FROM KhachHang p Where p.tenKhachHang LIKE %?1%" + "OR p.dienThoai LIKE %?1%";
+                TypedQuery<KhachHang> query = session.createQuery(hql, KhachHang.class);
+                query.setParameter("text", text);
+                listKhachHang = query.getResultList();
+            } catch (Exception e) {
+                listKhachHang = null;
+                
+            }
+        }
+        return listKhachHang;
     }
 
     @Override
     public long delete(long id) {
-        try ( Session session = HibernateUtil.getSessionFactory().openSession()) {
+         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
             try {
-                String hql = "DELETE KhuVuc WHERE id = :id";
+                String hql = "DELETE KhachHang p WHERE p.id = :id";
                 Query query = session.createQuery(hql);
                 query.setParameter("id", id);
                 int result = query.executeUpdate();
@@ -97,14 +108,9 @@ public class KhuVucRepository implements IRepository<KhuVuc>{
             } catch (Exception e) {
                 id = -1;
             }
-
+           
         }
         return id;
-    }
-
-    @Override
-    public List<KhuVuc> findList(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

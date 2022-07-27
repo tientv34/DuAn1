@@ -59,7 +59,7 @@ public class NhomSanPhamService implements IService<ModelNhomSanPham>  {
     }
 
     @Override
-    public ModelNhomSanPham findById(String id) {
+    public ModelNhomSanPham findById(long id) {
         NhomSanPham x = (NhomSanPham) _IRepository.findById(id);
         if (x == null) {
             return null;
@@ -68,7 +68,7 @@ public class NhomSanPhamService implements IService<ModelNhomSanPham>  {
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         return _IRepository.delete(id);
     }
 

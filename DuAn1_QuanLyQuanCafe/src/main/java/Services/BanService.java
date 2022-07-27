@@ -58,7 +58,7 @@ public class BanService implements IService<ModelBan> {
     }
 
     @Override
-    public ModelBan findById(String id) {
+    public ModelBan findById(long id) {
         Ban x = (Ban) _IRepository.findById(id);
         if (x == null) {
             return null;
@@ -67,7 +67,7 @@ public class BanService implements IService<ModelBan> {
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         return _IRepository.delete(id);
     }
 

@@ -59,7 +59,7 @@ public class HoaDonService implements IService<ModelHoaDon>{
     }
 
     @Override
-    public ModelHoaDon findById(String id) {
+    public ModelHoaDon findById(long id) {
         HoaDon x = (HoaDon) __IRepository.findById(id);
         if (x == null) {
             return null;
@@ -73,7 +73,7 @@ public class HoaDonService implements IService<ModelHoaDon>{
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

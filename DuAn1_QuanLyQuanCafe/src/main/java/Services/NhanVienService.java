@@ -70,7 +70,7 @@ public class NhanVienService implements IService<ModelNhanVien>{
     }
 
     @Override
-    public ModelNhanVien findById(String id) {
+    public ModelNhanVien findById(long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -80,7 +80,7 @@ public class NhanVienService implements IService<ModelNhanVien>{
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

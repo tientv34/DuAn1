@@ -66,7 +66,7 @@ public class SanPhamService implements IService<ModelSanPham> {
     }
 
     @Override
-    public ModelSanPham findById(String id) {
+    public ModelSanPham findById(long id) {
         SanPham x = (SanPham) _IRepository.findById(id);
         if (x == null) {
             return null;
@@ -76,7 +76,7 @@ public class SanPhamService implements IService<ModelSanPham> {
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         return _IRepository.delete(id);
     }
 
