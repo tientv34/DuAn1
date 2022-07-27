@@ -55,6 +55,11 @@ public class ChiTietKhachHang extends javax.swing.JFrame {
         return new ModelKhachHang(Long.parseLong(txt_id.getText()), txt_makhachhang.getText(), 
                 txt_tenkhachhang.getText(), txt_diaChi.getText(), txt_sdt.getText(), txt_email.getText(), txt_fax.getText(), 0, txt_ghichu.getText());
     }
+    
+    ModelKhachHang getGUI1(){
+        return new ModelKhachHang(Long.MIN_VALUE, txt_makhachhang.getText(), 
+                txt_tenkhachhang.getText(), txt_diaChi.getText(), txt_sdt.getText(), txt_email.getText(), txt_fax.getText(), 0, txt_ghichu.getText());
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -281,7 +286,7 @@ public class ChiTietKhachHang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_themKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themKhachHangActionPerformed
-        ModelKhachHang newKhachHang = getGUI();
+        ModelKhachHang newKhachHang = getGUI1();
         if (_iKhachHangIService.insert(newKhachHang) != null) {
             JOptionPane.showMessageDialog(this, "Thêm thành công!!!!");
         }else{
