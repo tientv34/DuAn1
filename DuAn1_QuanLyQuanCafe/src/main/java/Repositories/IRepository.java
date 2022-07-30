@@ -18,9 +18,9 @@ public interface IRepository<T> {
 
     public T insert(T entity);
 
-    public T findById(String id);
+    public T findById(long id);
     
     public List<T> findList(String id);
 
-    public String delete(String id);
+    public long delete(long id);
 }

@@ -58,7 +58,7 @@ public class NhanVienRepository implements IRepository<NhanVien>{
     }
 
     @Override
-    public NhanVien findById(String id) {
+    public NhanVien findById(long id) {
         NhanVien nhanvien;
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             
@@ -71,24 +71,25 @@ public class NhanVienRepository implements IRepository<NhanVien>{
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction trans = session.getTransaction();
             trans.begin();
             try {
                 String hql = "DELETE NhanVien n WHERE n.id = :id";
-                Query query = session.createQuery(hql);
+                 Query query = session.createQuery(hql);
                 query.setParameter("id", id);
                 int result = query.executeUpdate();
                 if (result == 0) {
-                    return "Xoá thành công";
+                    id = 0;
                 }
                 trans.commit();
             } catch (Exception e) {
-                e.printStackTrace();
-            }    
+                id = -1;
+            }
+           
         }
-        return "Xoá thất bại";
+        return id;
     }
 
     @Override

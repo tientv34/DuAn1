@@ -7,12 +7,14 @@ package ViewsDuAn;
 import Services.BanService;
 import Services.NhomSanPhamJList;
 import Services.IService;
+import Services.KhachHangService;
 import Services.KhuVucJList1;
 import Services.KhuVucService;
 import Services.NhomSanPhamService;
 import Services.SanPhamService;
 import Utilities.XDate;
 import ViewModels.ModelBan;
+import ViewModels.ModelKhachHang;
 import ViewModels.ModelKhuVuc;
 import ViewModels.ModelNhomSanPham;
 import ViewModels.ModelSanPham;
@@ -26,6 +28,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -52,11 +55,17 @@ public class Main extends javax.swing.JFrame {
     String _duongDanAnh = "";
     JLabel _labelAnh;
     JLabel _labelTenBan;
+    IService<ModelKhachHang> _khachHangIService = new KhachHangService();
+    DefaultTableModel _deDefaultTableModel = new DefaultTableModel();
+    int _currentPage;
+     int _pageSize;
 
     public Main() {
         initComponents();
         Rectangle r = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
         setSize(r.width, r.height);
+        _currentPage = 1;
+        _pageSize = 20;
         panel_khuvuc.setPreferredSize(new Dimension(r.width / 2, r.height - 20));
         panel_khuvuc.setLayout(new GridLayout(0, 1));
         this.setTitle("PHẦN MỀM QUẢN LÝ CAFE - HOTLINE 0392 133 732 ");
@@ -72,6 +81,25 @@ public class Main extends javax.swing.JFrame {
         loadTableSanPham(_SanPhamService.selectAll(0, 20));
         loadTabKhuVuc();
         btn_moban.setEnabled(false);
+        loadDateKhachHang(_khachHangIService.selectAll(0, 20));
+    }
+    
+    //load data Khach Hang;
+    void loadDateKhachHang(List<ModelKhachHang> listKhachHang){
+        _deDefaultTableModel = (DefaultTableModel) tbl_KhachHang.getModel();
+        _deDefaultTableModel.setRowCount(0);
+        int stt = 1;
+        for (ModelKhachHang x : listKhachHang) {
+            _deDefaultTableModel.addRow(new Object[]{
+                stt++,x.getMaKhachHang(), x.getTenKhachHang(),x.getDiaChi(),x.getDienThoai(),x.getEmail(),x.getFax(),x.getGhiChu()
+            });
+        }
+    }
+    
+    //Lấy 1 đối tượng từ table Khách Hàng
+     ModelKhachHang GUIKH(){
+        int index = tbl_KhachHang.getSelectedRow();
+        return this._khachHangIService.getListFromDB().get(index);
     }
 
     void listNhomSanPhamInJList(JList list, JFrame frame) {
@@ -267,9 +295,9 @@ public class Main extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
+        btn_them = new javax.swing.JButton();
+        btn_giam = new javax.swing.JButton();
+        btn_xoa = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
@@ -325,14 +353,14 @@ public class Main extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jToolBar8 = new javax.swing.JToolBar();
         jButton40 = new javax.swing.JButton();
-        jButton41 = new javax.swing.JButton();
-        jButton42 = new javax.swing.JButton();
+        btn_sua = new javax.swing.JButton();
+        btn_XoaKH = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JToolBar.Separator();
-        jButton43 = new javax.swing.JButton();
+        btn_loadData = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        txt_timkiem = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tbl_KhachHang = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -656,11 +684,16 @@ public class Main extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" }));
 
-        jButton10.setText("<< Thêm");
+        btn_them.setText("<< Thêm");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("Giảm>>");
+        btn_giam.setText("Giảm>>");
 
-        jButton18.setText("Xóa");
+        btn_xoa.setText("Xóa");
 
         jButton19.setText("In chế biến");
 
@@ -678,9 +711,9 @@ public class Main extends javax.swing.JFrame {
         panel_buttonLayout.setHorizontalGroup(
             panel_buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_them, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_giam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btn_xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -699,11 +732,11 @@ public class Main extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_giam, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1104,52 +1137,73 @@ public class Main extends javax.swing.JFrame {
         });
         jToolBar8.add(jButton40);
 
-        jButton41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/office-material.png"))); // NOI18N
-        jButton41.setText("Chỉnh sửa(F4)   ");
-        jButton41.setFocusable(false);
-        jButton41.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton41.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar8.add(jButton41);
+        btn_sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/office-material.png"))); // NOI18N
+        btn_sua.setText("Chỉnh sửa(F4)   ");
+        btn_sua.setFocusable(false);
+        btn_sua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_sua.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_suaActionPerformed(evt);
+            }
+        });
+        jToolBar8.add(btn_sua);
 
-        jButton42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
-        jButton42.setText("Xóa(Del)");
-        jButton42.setFocusable(false);
-        jButton42.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton42.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar8.add(jButton42);
+        btn_XoaKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/delete.png"))); // NOI18N
+        btn_XoaKH.setText("Xóa(Del)");
+        btn_XoaKH.setFocusable(false);
+        btn_XoaKH.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_XoaKH.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_XoaKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_XoaKHActionPerformed(evt);
+            }
+        });
+        jToolBar8.add(btn_XoaKH);
         jToolBar8.add(jSeparator7);
 
-        jButton43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
-        jButton43.setFocusable(false);
-        jButton43.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton43.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar8.add(jButton43);
+        btn_loadData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exchange.png"))); // NOI18N
+        btn_loadData.setFocusable(false);
+        btn_loadData.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_loadData.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_loadData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loadDataActionPerformed(evt);
+            }
+        });
+        jToolBar8.add(btn_loadData);
 
         jLabel13.setText("Lọc dữ liệu(F3):  ");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        txt_timkiem.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txt_timkiemCaretUpdate(evt);
+            }
+        });
+
+        tbl_KhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Tên khách", "Địa chỉ", "Điện thoại", "Email", "Fax", "Ghi chú"
+                "STT", "Mã Khách Hàng", "Tên khách", "Địa chỉ", "Số điện thoại", "Email", "Fax", "Ghi chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, true
+                false, true, false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane9.setViewportView(jTable3);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable3.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jScrollPane9.setViewportView(tbl_KhachHang);
+        if (tbl_KhachHang.getColumnModel().getColumnCount() > 0) {
+            tbl_KhachHang.getColumnModel().getColumn(0).setPreferredWidth(5);
+            tbl_KhachHang.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -1163,7 +1217,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 975, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(531, Short.MAX_VALUE))
         );
@@ -1174,7 +1228,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_timkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9))
         );
@@ -1405,6 +1459,62 @@ public class Main extends javax.swing.JFrame {
         setNgayGio();
     }//GEN-LAST:event_btn_mobanActionPerformed
 
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+       int index = tbl_mathang.getSelectedRow();
+       
+    }//GEN-LAST:event_btn_themActionPerformed
+
+    private void btn_XoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaKHActionPerformed
+        int index = tbl_KhachHang.getSelectedRow();
+        if (index < 0) {
+            JOptionPane.showMessageDialog(this, "Mời bạn chọn khách hàng muốn xoá????");
+            return;
+        }
+        int a = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá không !!!!!","XÁC NHẬN", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+           long id = _khachHangIService.getListFromDB().get(index).getId();
+           long b = _khachHangIService.delete(id);
+            if (b >= 0) {
+                JOptionPane.showMessageDialog(this, "Xoá thành công!!!");
+                loadDateKhachHang(_khachHangIService.selectAll(_currentPage-1, _pageSize));
+            }else{
+                JOptionPane.showMessageDialog(this, "Xoá thất bại!!!!!");
+            }
+        }
+    }//GEN-LAST:event_btn_XoaKHActionPerformed
+
+    private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
+        int index = tbl_KhachHang.getSelectedRow();
+        if (index >= 0 ) {
+           _ChiTietKhachHang = new ChiTietKhachHang(this);
+           _ChiTietKhachHang.setVisible(true);
+           _ChiTietKhachHang.loadDate1(_khachHangIService.getListFromDB().get(index));
+        }else{
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn khách hàng muốn thêm!!!!");
+        }
+    }//GEN-LAST:event_btn_suaActionPerformed
+
+    private void txt_timkiemCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txt_timkiemCaretUpdate
+        List<ModelKhachHang> listKhachHangs = _khachHangIService.selectAll(0, 20);
+        String text = txt_timkiem.getText();
+        if (text.equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin muốn tìm");
+            return;
+        }
+        List<ModelKhachHang> lstKhachHang = new ArrayList<>();
+        for (ModelKhachHang x : listKhachHangs) {
+            if (x.getTenKhachHang().contains(text) || x.getDienThoai().contains(text)) {
+                lstKhachHang.add(x);
+            }
+        }
+        loadDateKhachHang(lstKhachHang);
+    }//GEN-LAST:event_txt_timkiemCaretUpdate
+
+    private void btn_loadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loadDataActionPerformed
+        txt_timkiem.setText("");
+        loadDateKhachHang(_khachHangIService.selectAll(0, 20));
+    }//GEN-LAST:event_btn_loadDataActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1439,21 +1549,24 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_XoaKH;
     private javax.swing.JButton btn_chuyenban;
+    private javax.swing.JButton btn_giam;
+    private javax.swing.JButton btn_loadData;
     private javax.swing.JButton btn_moban;
+    private javax.swing.JButton btn_sua;
+    private javax.swing.JButton btn_them;
+    private javax.swing.JButton btn_xoa;
     private javax.swing.JComboBox<String> cbc_gio;
     private javax.swing.JComboBox<String> cbc_ngay;
     private javax.swing.JPanel danhmucbankhuvuc;
     private javax.swing.JPanel danhmuckhachang;
     private javax.swing.JPanel danhmucnhomsanpham;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
@@ -1476,9 +1589,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
-    private javax.swing.JButton jButton41;
-    private javax.swing.JButton jButton42;
-    private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -1535,12 +1645,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane7;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -1565,7 +1673,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tab_chinh;
     private javax.swing.JTabbedPane tab_khuvucduoi;
     private javax.swing.JTabbedPane tab_khuvuctren;
+    private javax.swing.JTable tbl_KhachHang;
     private javax.swing.JTable tbl_mathang;
     private javax.swing.JTable tbl_mathang1;
+    private javax.swing.JTextField txt_timkiem;
     // End of variables declaration//GEN-END:variables
 }

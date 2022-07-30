@@ -58,7 +58,7 @@ public class KhuVucService implements IService<ModelKhuVuc> {
     }
 
     @Override
-    public ModelKhuVuc findById(String id) {
+    public ModelKhuVuc findById(long id) {
         KhuVuc x = (KhuVuc) _IRepository.findById(id);
         if (x == null) {
             return null;
@@ -67,7 +67,7 @@ public class KhuVucService implements IService<ModelKhuVuc> {
     }
 
     @Override
-    public String delete(String id) {
+    public long delete(long id) {
         return _IRepository.delete(id);
     }
 
